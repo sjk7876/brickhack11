@@ -1,31 +1,13 @@
-{% load static tailwind_tags %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <title>CareTaker</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        {% tailwind_css %}
-    </head>
-
-    <body class="bg-gray-50 font-sans leading-normal tracking-normal">
-        <div class="navbar bg-base-100">
-            <div class="flex-1">
-                <a class="btn btn-ghost text-xl">Petals</a>
-            </div>
-            <div class="flex-none">
-                <button class="btn btn-square btn-ghost">
-                    <img src="{% static 'core/icons/hamburger.svg' %}" alt="Menu Icon" class="w-6 h-6">
-                </button>
-            </div>
-        </div>
-        
-        <div class="container mx-auto">
-            {% block content %}
-            {% endblock %}
-        </div>
-        
-    </body>
-</html>
+{% extends 'base.html' %} {% block content %}
+<section class="flex items-center justify-center h-screen">
+  <divclass class = "items-center">
+    <h1>Type out a list of words seperated by comma</h1>
+    <div class = "justify-center">
+        <input>
+    </div>
+    <div>
+        <button type="button">-></button>
+    </div>
+  </div>
+</section>
+{% endblock %}
