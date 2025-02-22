@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% load static%} {% block content %}
+<section class="flex items-center justify-center h-screen">
+  {% for node in nodes %}
+  <div class="card bg-base-100 w-96 shadow-xl mx-6">
+    {% comment %} <figure>
+      <img src="{{ node.image }}" alt="{{ node.name }}" />
+    </figure> {% endcomment %}
+    <p>{{ node }}</p>
+  </div>
+  {%endfor%}
+</section>
+{% endblock %}
