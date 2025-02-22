@@ -6,8 +6,19 @@
         <input>
     </div>
     <div>
-        <button type="button">-></button>
+        <input type="button" name="button">
     </div>
+  </div>
+  <div class="input-file">
+    <hi>Upload a photo for a Object</hi>
+  </div>
+  <div class="input-dropdown">
+    <label>Choose your Object</label>
+    <select>
+      {% for x in objects %}
+        <option value="{{x}}">{{x}}</option>
+      {% endfor %}
+  </select>
   </div>
 </section>
 {% endblock %}
