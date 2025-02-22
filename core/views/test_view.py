@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse
+from ..models import Node
 
 def home(request):
-    return render(request, "home.html")
+    node = Node.objects.get(id=3)
+    return render(request, "home.html", {"node" : node})
