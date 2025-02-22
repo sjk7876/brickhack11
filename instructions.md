@@ -1,6 +1,8 @@
 You need two terminals open.
 
-In one, run `py manage.py tailwind install` (if you haven't done so)
+In one, run `pip install -r requirements.txt` (if you haven't done so)
+
+Then run `py manage.py tailwind install` (if you haven't done so)
 
 Then run `py manage.py tailwind start`
 
