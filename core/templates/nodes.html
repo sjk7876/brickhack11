@@ -4,7 +4,7 @@
   <a href="{% url 'core:patient-node' node.id %}" class="hover:scale-105 transition-transform duration-300">
     <div class="card bg-base-100 w-96 shadow-xl mx-6">
       <figure>
-        <img src="{{ node.image }}" alt="{{ node.name }}" />
+        <img src="{{ node.image.url }}" alt="{{ node.name }}" />
       </figure>
     </div>
   </a>

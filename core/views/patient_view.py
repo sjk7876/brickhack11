@@ -1,12 +1,14 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from ..models import Node
 from ..DTOs.NodeDTO import load_nodes_from_json
 
-def render_nodes(request, node_id=None):
-    # categories = Node.objects.all()
-    nodes = load_nodes_from_json()
-    return render(request, "nodes.html", {"nodes": nodes})
+NODES = load_nodes_from_json()
 
-def print_something(request, node_id):
-    print("OSAHFDLASDF " + node_id)
-    return HttpResponse("Hello, world. You're at the polls index.")
+def render_nodes(request):
+    categories = Node.objects.all()
+    return render(request, "nodes.html", {"nodes": categories})
+
+def render_children(request, node_id):
+    node = Node.objects.get(id=node_id)
+    children = node.children.all()
+    return render(request, "nodes.html", {"nodes": children})

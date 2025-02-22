@@ -8,7 +8,7 @@ urlpatterns = [
     path("", test_view.home, name="home"),
     path("patient/", patient_view.render_nodes, name="patient-dashboard"),
     path("caretaker/", caregiver_view.home, name="caretaker-dashboard"),
-    path("patient/<int:node_id>/", patient_view.print_something, name="patient-node"),
+    path("patient/<int:node_id>/", patient_view.render_children, name="patient-node"),
 ]
 
 if settings.DEBUG:
