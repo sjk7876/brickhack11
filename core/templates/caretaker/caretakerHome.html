@@ -1,24 +1,27 @@
-{% extends 'base.html' %} {% block content %}
-<section class="flex items-center justify-center h-screen">
-  <divclass class = "items-center">
-    <h1>Type out a list of words seperated by comma</h1>
-    <div class = "justify-center">
-        <input>
-    </div>
-    <div>
-        <input type="button" name="button">
-    </div>
-  </div>
+{% extends 'base.html' %} {% block content %} {% load static %}
+<section class="self-center flex justify-center h-screen">
   <div class="input-file">
-    <hi>Upload a photo for a Object</hi>
-  </div>
-  <div class="input-dropdown">
-    <label>Choose your Object</label>
-    <select>
-      {% for x in objects %}
-        <option value="{{x}}">{{x}}</option>
-      {% endfor %}
-  </select>
+    <div class="w-74 h-74 bg-gray-200 p-4 rounded-lg shadow-md self-center flex justify-center">
+      <form action="{% url 'core:caretaker-upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Upload a photo for an object</h1>
+        <img src="{% static 'images/download.png' %}" alt="Menu Icon" class="w-60 h-60" />
+        <input type="file" id="myFile" name="myFile" accept="image/*">
+        <h1>Name the photo</h1>
+        <button class="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">Submit</button>
+        <input type="text" id="myName" name="myName" class="rounded-full">
+        <select id="" name = " " class="bg-blue-200 text-white rounded-full py-2 px-4 hover:bg-blue-250 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          {% for x in objects %}
+            <option value="{{x}}">{{x}}</option>
+          {% endfor %}
+        </select>
+      </form>
+    </div>
+    <form action="{% url 'core:caretaker-newCat' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" id="newObject" name="newObject" class="rounded-full">
+      <button class="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">Submit</button>
+    </form>
   </div>
 </section>
 {% endblock %}

@@ -14,6 +14,8 @@ urlpatterns = [
     path("caretaker/", caregiver_view.home, name="caretaker-dashboard"),
     path("choose-user-type/", auth_view.choose_user_type, name="choose_user_type"),
     path("patient/<int:node_id>/", patient_view.render_nodes, name="patient-node"),
+    path("caretaker/upload/",caregiver_view.upload, name="caretaker-upload"),
+    path('caretaker/newCat/', caregiver_view.newCat, name='caretaker-newCat')
 ]
 
 if settings.DEBUG:
