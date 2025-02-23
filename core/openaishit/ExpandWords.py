@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from GenerateImage import generateImage
+# from GenerateImage import generateImage
 
 load_dotenv()
 
@@ -85,7 +85,7 @@ def expandWord(word, category):
     client = getClient()
     
     context = getContextOne()
-    prompt = getPrompt(word, category)
+    prompt = getPromptOne(word, category)
     
     phrase = callOpenAI(context, prompt, client)
     
@@ -129,9 +129,9 @@ def main():
     phrase = phrase.split(",")
     category = category.split(",")
     
-    for i in range(len(word)):
+    # for i in range(len(word)):
         # print(i, p)
-        generateImage(phrase[i].lstrip(), category[i], word[i].lstrip())
+        # generateImage(phrase[i].lstrip(), category[i], word[i].lstrip())
 
 if __name__ == "__main__":
     main()

@@ -4,8 +4,8 @@ import json
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from GenerateImage import generateImages
-from ExpandWords import expandWordList
+from core.openaishit.GenerateImage import generateImages
+from core.openaishit.ExpandWords import expandWordList
 
 load_dotenv()
 
@@ -120,7 +120,6 @@ def downloadImageFromCatAndWord(categories):
     generateImages(phrases, cats, words)
     
 def catoregizeWordList(words):
-    print(os.getcwd())
     client = getClient()
     
     context = getContext()
