@@ -16,7 +16,7 @@
     <div class="navbar bg-gray-100 shadow-md">
       <div class="navbar-start"></div>
       <div class="navbar-center">
-        <a class="btn btn-ghost text-xl" href="{% url 'core:patient-dashboard' %}">Petal</a>
+        <a class="btn btn-ghost text-xl" href="{% url 'patient-dashboard' %}">Petal</a>
       </div>
       <div class="navbar-end">
         <div class="dropdown dropdown-end">
@@ -27,9 +27,10 @@
             tabindex="0"
             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li><a href="{% url 'core:patient-dashboard' %}">Patient View</a></li>
-            <li><a href="{% url 'core:caretaker-dashboard' %}">Caretaker View</a></li>
-            <li><a href="{% url 'core:about-page' %}">About Petal</a></li>
+            <li><a href="{% url 'patient-dashboard' %}">Patient View</a></li>
+            <li><a href="{% url 'caretaker-dashboard' %}">Caretaker View</a></li>
+            <!-- <li><a href="{% url 'caretaker-dashboard' %}">About Petal</a></li>  -->
+            <li><a href="{% url 'logout' %}">Logout</a></li>
           </ul>
         </div>
       </div>

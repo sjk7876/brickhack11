@@ -86,13 +86,17 @@ def logout(request):
 )
 
 def index(request):
-    return render(
-        request,
-        "home.html",
-        context={
+    user = request.user
+    if user.user_type == "patient":
+        return redirect(reverse("patient-dashboard"))
+    elif user.user_type == "caretaker":
+        return redirect(reverse("caretaker-dashboard"))
+    else:
+        # Fallback: render a generic home page if user type isn't set
+        return render(request, "home.html", context={
             "session": request.session.get("user"),
             "pretty": json.dumps(request.session.get("user"), indent=4),
-        },
+        }
 )
 
 def login_redirect(request):

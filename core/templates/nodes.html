@@ -11,7 +11,7 @@
       class="tooltip tooltip-primary hover:scale-110 transition-transform duration-300"
       data-tip="{{ node.name }}"
     >
-      <a class="w-full h-full" href="{% url 'core:patient-node' node.id %}">
+      <a class="w-full h-full" href="{% url 'patient-node' node.id %}">
         <figure class="rounded-lg shadow-xl">
           <img src="{{ node.image.url }}" alt="{{ node.name }}" />
         </figure>

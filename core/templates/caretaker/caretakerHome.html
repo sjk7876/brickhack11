@@ -2,7 +2,7 @@
 <section class="self-center flex justify-center h-screen">
   <div class="input-file">
     <div class="w-74 h-74 bg-gray-200 p-4 rounded-lg shadow-md self-center flex justify-center">
-      <form action="{% url 'core:caretaker-upload' %}" method="post" enctype="multipart/form-data">
+      <form action="{% url 'caretaker-upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h1>Upload a photo for an object</h1>
         <img src="{% static 'images/download.png' %}" alt="Menu Icon" class="w-60 h-60" />
@@ -17,7 +17,7 @@
         </select>
       </form>
     </div>
-    <form action="{% url 'core:caretaker-newCat' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'caretaker-newCat' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="text" id="newObject" name="newObject" class="rounded-full">
       <button class="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">Submit</button>
