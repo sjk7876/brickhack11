@@ -3,7 +3,7 @@ from .views import test_view, caregiver_view, patient_view, auth_view
 from django.conf import settings
 from django.conf.urls.static import static
 
-app_name = "core"
+# app_name = "core"
 urlpatterns = [
     path("", auth_view.login_redirect, name="login_redirect"),
     path("home/", auth_view.index, name="index"),

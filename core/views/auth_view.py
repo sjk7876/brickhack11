@@ -24,6 +24,7 @@ oauth.register(
 )
 
 def login(request):
+    print("login")
     return oauth.auth0.authorize_redirect(
         request, request.build_absolute_uri(reverse("callback"))
 )
@@ -48,11 +49,6 @@ def choose_user_type(request):
     return render(request, "choose_user_type.html", {"user": user})
 
 def callback(request):
-    # token = oauth.auth0.authorize_access_token(request)
-    # request.session["user"] = token
-    # user = User.objects.create_user(token["userinfo"]["given_name"], token["userinfo"]["email"], token["id_token"])
-    # user.save()
-    # return redirect(request.build_absolute_uri(reverse("index")))
     token = oauth.auth0.authorize_access_token(request)
     request.session["user"] = token
     user_info = token.get("userinfo", {})
@@ -63,10 +59,9 @@ def callback(request):
     # Try to retrieve the user; if not found, create a new one.
     user, created = User.objects.get_or_create(email=email, defaults={"username": username})
 
-    if created:
+    if (user.user_type == "" and not created) or created:
         # For new users, store the user id in session so we can set their user type
         request.session["pending_user_id"] = user.id
-        print("pending user id:", request.session["pending_user_id"])
         # return redirect(request.build_absolute_uri(reverse("choose_user_type")))
         return redirect(reverse("choose_user_type"))
 
