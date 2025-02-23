@@ -1,28 +1,23 @@
 {% extends 'base.html' %} {% block content %}
 <section class="self-center flex justify-center h-screen">
-  <div class = "items-center">
-    <h1>Type out a list of words seperated by comma</h1>
-    <div class = "justify-center">
-        <input>
-    </div>
-    <div>
-        <input type="button" name="button">
-  </div>
-  </div>
   <div class="input-file">
-    <hi>Upload a photo for a Object</hi>
+    <hi>Upload a photo for an object and name it</hi>
     <form action="{% url 'core:caretaker-upload' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="file" id="myFile" name="myFile" accept="image/*">
-      <input type="submit">
+      <div>
+        <button class="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">Submit</button>
+        <input type="text" id="myName" name="myName" class="rounded-full">
+      </div>
+      <select id="" name = " " class="bg-blue-200 text-white rounded-full py-2 px-4 hover:bg-blue-250 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        {% for x in objects %}
+          <option value="{{x}}">{{x}}</option>
+        {% endfor %}
+      </select>
     </form>
-  </div>
-  <div class="input-dropdown ">
-    <select class="border-[3px]">
-      {% for x in objects %}
-        <option value="{{x}}">{{x}}</option>
-      {% endfor %}
-    </select>
+    <form action="{% url 'core:caretaker-newCat' %}" method="post" enctype="multipart/form-data">
+
+    </form>
   </div>
 </section>
 {% endblock %}
