@@ -1,10 +1,66 @@
 [
-    {
-        "name": "Node A",
-        "image": "/static/images/node_a.jpg"
-    },
-    {
-        "name": "Node B",
-        "image": "/static/images/node_b.jpg"
-    }
+  {
+    "name": "Drinks",
+    "image": "/static/images/drinks.png",
+    "children": [
+      {
+        "name": "Cold Drinks",
+        "image": "/static/images/cold-drink.png",
+        "children": [
+            {
+                "name": "Water",
+                "image": "/static/images/water.png",
+                "children": []
+            },
+            {
+                "name": "Soda",
+                "image": "/static/images/soda.png",
+                "children": []
+            },
+            {
+                "name": "Lemonade",
+                "image": "/static/images/lemonade.png",
+                "children": []
+            }
+        ]
+      },
+      {
+        "name": "Hot Drinks",
+        "image": "/static/images/hot-drink.png",
+        "children": [
+            {
+                "name": "Coffee",
+                "image": "/static/images/coffee.png",
+                "children": []
+            },
+            {
+                "name": "Tea",
+                "image": "/static/images/tea.png",
+                "children": []
+            }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Food",
+    "image": "/static/images/food.png",
+    "children": [
+      {
+        "name": "Vegetables",
+        "image": "/static/images/vegetables.png",
+        "children": []
+      },
+      {
+        "name": "Meat",
+        "image": "/static/images/meat.png",
+        "children": []
+      },
+      {
+        "name": "Carbs",
+        "image": "/static/images/carbs.png",
+        "children": []
+      }
+    ]
+  }
 ]

@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import test_view, caregiver_view, patient_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = "core"
 urlpatterns = [
@@ -8,3 +10,6 @@ urlpatterns = [
     path("caretaker/", caregiver_view.home, name="caretaker-dashboard"),
     path("caretaker/upload/",caregiver_view.upload, name="caretaker-upload"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
