@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import caregiver_view, patient_view, auth_view
+from .views import caregiver_view, patient_view, auth_view, display_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -20,7 +20,9 @@ urlpatterns = [
     path("caretaker/uploadwordlist/upload/", caregiver_view.generate_objects_from_word_list, name="caretaker-upload-word-list"),
     path("caretaker/uploaditem/generateimage", caregiver_view.generate_single_image, name="caretaker-generate-single-image"),
     path('caretaker/generate/', caregiver_view.render_Generate, name='caretakerGenerate'),
-
+    path("display-demo/", display_view.display_demo, name="display-demo"),
+    path("display-demo/phone/", display_view.display_demo_phone, name="display-demo-phone"),
+    path("display-demo/phone/<int:node_id>", display_view.display_demo_phone, name="display-demo-phone-node"),
 ]
 
 if settings.DEBUG:
