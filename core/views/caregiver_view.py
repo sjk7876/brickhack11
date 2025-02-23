@@ -10,6 +10,10 @@ catagories = ["Choose your Catagories"]
 def home(request):
     return render(request, "caretaker/caretakerPageLayout.html",{"objects":catagories})
 
+def render_Generate(request):
+    nodes = Node.objects.filter(parent=None)
+    return render(request, "caretaker/caretakerGenerate.html", {"nodes":nodes})
+
 def upload(request):
     if request.method == "POST":
         print(request.POST)

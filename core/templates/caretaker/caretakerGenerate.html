@@ -2,14 +2,13 @@
 {% load static %}
 {% block submenu %}
 <div class="flex flex-col justify-center gap-4">
-  <h1 class="text-2xl font-bold">Upload Objects Individually</h1>
+  <h1 class="text-2xl font-bold">Generate Image</h1>
   <p class="text-sm text-gray-500">
-    Upload a new object by specifying a name, a category (optional), and an
-    image file (or generate one!).
+    Generate an Image from a name and a selected category
   </p>
 
   <form
-    action="{% url 'caretaker-upload' %}"
+    action="{% url 'caretaker-generate-single-image' %}"
     method="post"
     enctype="multipart/form-data"
     class="flex flex-col w-3/4 mx-auto gap-4"
@@ -73,25 +72,8 @@
     <!-- Hidden Input for Form Submission -->
     <input type="hidden" name="category_id" id="selected-category" Z />
 
-    <!-- Image Upload -->
-    <div
-      class="flex w-full items-center place-self-start justify-self-start gap-2"
-    >
-      <label
-        class="input input-bordered flex items-center place-self-start justify-self-start gap-2"
-      >
-        <input
-          type="file"
-          name="image"
-          class="grow"
-          accept="image/*"
-          required
-        />
-      </label>
-    </div>
-
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary w-full">Upload</button>
+    <button type="submit" class="btn btn-primary w-full">Generate Image</button>
   </form>
 </div>
 
