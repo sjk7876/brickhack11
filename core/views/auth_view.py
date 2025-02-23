@@ -7,7 +7,8 @@ from urllib.parse import quote_plus, urlencode
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, logout as django_logout
+
 
 oauth = OAuth()
 User = get_user_model()
@@ -75,14 +76,14 @@ def callback(request):
     return redirect(reverse("index"))
 
 def logout(request):
-    request.session.clear()
+    django_logout(request)
+    request.session.flush()
 
     return redirect(
         f"https://{settings.AUTH0_DOMAIN}/v2/logout?"
         + urlencode(
             {
-                # "returnTo": request.build_absolute_uri(reverse("index")),
-                "returnTo": reverse("index"),
+                "returnTo": request.build_absolute_uri(reverse("login")),
                 "client_id": settings.AUTH0_CLIENT_ID,
             },
             quote_via=quote_plus,
