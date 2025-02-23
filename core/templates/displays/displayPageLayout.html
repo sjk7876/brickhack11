@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% load static%} {% block content %}
+<div class="self-center w-full">
+  <div class="flex justify-center w-full">
+    <ul
+      class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box gap-4"
+    >
+      <li><a href="{% url 'display-demo-phone' %}">Phone</a></li>
+      <li><a href="{% url 'display-demo-tablet' %}">Tablet</a></li>
+    </ul>
+  </div>
+
+  <div class="text-center container w-full mx-auto self-center justify-center mt-6">
+    {% block submenu %} {% endblock submenu %}
+  </div>
+</div>
+{% endblock content %}

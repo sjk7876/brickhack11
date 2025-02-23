@@ -1,0 +1,62 @@
+{% extends "displays/displayPageLayout.html" %}
+{% load static %}
+
+{% block scripts %}
+<script src="{% static 'core/js/nodes.js' %}" defer></script>
+{% endblock scripts %} 
+
+{% block submenu %}
+<div class="flex flex-col justify-center gap-4">
+  {% comment %} <h1 class="text-2xl font-bold">Phone</h1>
+  <p class="text-sm text-gray-500">
+    This is a phone display. It is designed to be used on a phone.
+  </p> {% endcomment %}
+
+  <div class="mockup-phone">
+    <div class="camera"></div>
+    <div class="display">
+      <div class="artboard artboard-demo phone-1">
+<section class="flex flex-wrap items-center justify-center gap-4 w-full h-full overflow-y-auto scroll-container">
+  <button
+    onclick="window.history.back()"
+    class="absolute left-5 top-1/2 transform -translate-y-1/2 z-[100] bg-blue-500 opacity-80 shadow-lg text-white rounded-full py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+  >
+    <img src="{% static 'core/icons/back-button.svg' %}" alt="Back" class="w-11 h-11" />
+  </button>
+  {% for node in nodes %} {% if node.children.all|length > 0 %}
+  <div
+    class="card bg-base-100 shadow-xl mx-4 my-4 w-48 h-48"
+    id="category-card-{{ forloop.counter }}"
+  >
+    <div
+      class="tooltip tooltip-primary hover:scale-110 transition-transform duration-300"
+      data-tip="{{ node.name }}"
+    >
+      <a class="w-full h-full" href="{% url 'display-demo-phone-node' node.id %}">
+        <figure class="rounded-lg shadow-xl overflow-hidden w-48 h-48">
+          <img src="{{ node.image.url }}" alt="{{ node.name }}" class="w-full h-full object-cover" />
+        </figure>
+      </a>
+    </div>
+  </div>
+  {% else %}
+  <div
+    class="card bg-base-100 shadow-xl mx-4 my-4 w-48 h-48"
+    id="single-card-{{ forloop.counter }}"
+  >
+    <div
+      class="tooltip tooltip-primary hover:scale-110 transition-transform duration-300"
+      data-tip="{{ node.name }}"
+    >
+      <figure class="rounded-lg shadow-xl overflow-hidden w-48 h-48">
+        <img src="{{ node.image.url }}" alt="{{ node.name }}" class="w-full h-full object-cover" />
+      </figure>
+    </div>
+  </div>
+  {% endif %} {%endfor%}
+</section>
+      </div>
+    </div>
+  </div>
+  
+{% endblock submenu %}

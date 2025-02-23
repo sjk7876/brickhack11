@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         card.addEventListener("click", function (event) {
             const otherCards = [...allCards].filter(c => c !== this);
             gsap.to(otherCards, {
-                opacity: 0.4,
+                opacity: 0.7,
                 scale: 0.9,
                 duration: 0.5,
                 ease: "power3.out",
