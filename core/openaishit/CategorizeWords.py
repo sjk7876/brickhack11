@@ -95,6 +95,7 @@ def strToNode(s):
     return top_level_categories
 
 def catoregizeWordList(words):
+    print(os.getcwd())
     client = getClient()
     
     context = getContext()

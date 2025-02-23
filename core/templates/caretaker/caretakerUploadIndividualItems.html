@@ -1,28 +1,95 @@
 {% extends "caretaker/caretakerPageLayout.html" %} {% load static %}
 {% block submenu %}
-<section class="self-center flex justify-center h-screen">
-  <div class="input-file">
-    <div class="w-74 h-74 bg-gray-200 p-4 rounded-lg shadow-md self-center flex justify-center">
-      <form action="{% url 'caretaker-upload' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h1>Upload a photo for an object</h1>
-        <img src="{% static 'images/download.png' %}" alt="Menu Icon" class="w-60 h-60" />
-        <input type="file" id="myFile" name="myFile" accept="image/*">
-        <h1>Name the photo</h1>
-        <button class="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">Submit</button>
-        <input type="text" id="myName" name="myName" class="rounded-full">
-        <select id="" name = " " class="bg-blue-200 text-white rounded-full py-2 px-4 hover:bg-blue-250 focus:outline-none focus:ring-2 focus:ring-blue-400">
-          {% for x in objects %}
-            <option value="{{x}}">{{x}}</option>
-          {% endfor %}
-        </select>
-      </form>
+<div class="flex flex-col justify-center gap-4 ">
+  <h1 class="text-2xl font-bold">Upload Objects Individually</h1>
+  <p class="text-sm text-gray-500">
+    Upload a new object by specifying a name, a category (optional), and an
+    image file (or generate one!).
+  </p>
+
+  <form
+    action="{% url 'caretaker-upload' %}"
+    method="post"
+    enctype="multipart/form-data"
+    class="flex flex-col w-3/4 mx-auto gap-4"
+  >
+    {% csrf_token %}
+
+    <!-- Name Input -->
+    <label class="input input-bordered flex items-center gap-2">
+      Name
+      <input type="text" class="grow outline-transparent border-transparent" placeholder="Item name" />
+    </label>
+
+    <!-- Category Dropdown -->
+    <div class="dropdown flex grow w-full">
+      <label
+        tabindex="0"
+        class="btn font-normal text-base w-full bg-white border-gray-300 ps-1"
+        id="category-label"
+      >
+        Category
+      </label>
+      <ul
+        tabindex="0"
+        class="menu dropdown-content z-[1] bg-base-200 rounded-box w-56"
+      >
+        {% for node in nodes %} {% if node.children.all|length < 1 %}
+        <li>
+          <a onclick="selectCategory('{{ node.name }}')">
+            {{ node.name }}
+          </a>
+        </li>
+        {% else %}
+        <!-- Parent Category (Selectable + Expandable) -->
+        <li>
+          <details>
+            <summary onclick="selectCategory('{{ node.name }}', event)">
+              {{ node.name }}
+            </summary>
+            <ul>
+              {% for child in node.children.all %}
+              <li>
+                <a onclick="selectCategory('{{ child.name }}')">
+                  {{ child.name }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </details>
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
     </div>
-    <form action="{% url 'caretaker-newCat' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <input type="text" id="newObject" name="newObject" class="rounded-full">
-      <button class="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">Submit</button>
-    </form>
-  </div>
-</section>
+
+    <!-- Hidden Input for Form Submission -->
+    <input type="hidden" name="category" id="selected-category" />
+
+    <!-- Image Upload -->
+    <label class="input input-bordered flex items-center gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        class="h-4 w-4 opacity-70"
+      >
+        <path
+          d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"
+        />
+      </svg>
+      <input type="file" name="image" class="grow" accept="image/*" required />
+    </label>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-full">Upload</button>
+  </form>
+</div>
+
+<!-- JavaScript for Handling Category Selection -->
+<script>
+  function selectCategory(value) {
+    document.getElementById("category-label").innerText = value;
+    document.getElementById("selected-category").value = value;
+  }
+</script>
 {% endblock submenu %}

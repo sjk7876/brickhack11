@@ -21,7 +21,8 @@ def render_word_list_input_box(request):
     return render(request, "caretaker/caretakerWordListUpload.html", {"objects":catagories})
 
 def render_individual_item_input_box(request):
-    return render(request, "caretaker/caretakerUploadIndividualItems.html", {"objects":catagories})
+    nodes = Node.objects.filter(parent=None)
+    return render(request, "caretaker/caretakerUploadIndividualItems.html", {"nodes":nodes})
 
 def generate_objects_from_word_list(request):
     if request.method == "POST":
