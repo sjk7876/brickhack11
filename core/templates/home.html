@@ -1,6 +1,11 @@
-{% extends 'base.html' %} {% block content %}
-<section class="flex items-center justify-center h-screen">
-  <h2 class="text-5xl">Django + Tailwind ❤️</h2>
-  <img src="{{ node.image.url }}" alt="Apple" class="w-6 h-6">
-</section>
+{% extends 'base.html' %} 
+{% block content %}
+  {% if session %}
+    <h1>Welcome {{session.userinfo.name}}!</h1>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    <div><pre>{{pretty}}</pre></div>
+  {% else %}
+    <h1>Welcome Guest</h1>
+    <p><a href="{% url 'login' %}">Login</a></p>
+  {% endif %}
 {% endblock %}

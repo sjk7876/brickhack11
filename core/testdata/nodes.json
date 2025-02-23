@@ -1,62 +1,74 @@
 [
   {
+    "id": "1",
     "name": "Drinks",
     "image": "/static/images/drinks.png",
     "children": [
       {
+        "id": "1.1",
         "name": "Cold Drinks",
         "image": "/static/images/cold-drink.png",
         "children": [
-            {
-                "name": "Water",
-                "image": "/static/images/water.png",
-                "children": []
-            },
-            {
-                "name": "Soda",
-                "image": "/static/images/soda.png",
-                "children": []
-            },
-            {
-                "name": "Lemonade",
-                "image": "/static/images/lemonade.png",
-                "children": []
-            }
+          {
+            "id": "1.1.1",
+            "name": "Water",
+            "image": "/static/images/water.png",
+            "children": []
+          },
+          {
+            "id": "1.1.2",
+            "name": "Soda",
+            "image": "/static/images/soda.png",
+            "children": []
+          },
+          {
+            "id": "1.1.3",
+            "name": "Lemonade",
+            "image": "/static/images/lemonade.png",
+            "children": []
+          }
         ]
       },
       {
+        "id": "1.2",
         "name": "Hot Drinks",
         "image": "/static/images/hot-drink.png",
         "children": [
-            {
-                "name": "Coffee",
-                "image": "/static/images/coffee.png",
-                "children": []
-            },
-            {
-                "name": "Tea",
-                "image": "/static/images/tea.png",
-                "children": []
-            }
+          {
+            "id": "1.2.1",
+            "name": "Coffee",
+            "image": "/static/images/coffee.png",
+            "children": []
+          },
+          {
+            "id": "1.2.2",
+            "name": "Tea",
+            "image": "/static/images/tea.png",
+            "children": []
+          }
         ]
       }
     ]
   },
   {
+    "id": "2",
     "name": "Food",
     "image": "/static/images/food.png",
     "children": [
       {
+        "id": "2.1",
         "name": "Vegetables",
         "image": "/static/images/vegetables.png",
         "children": []
       },
       {
+        "id": "2.2",
         "name": "Meat",
         "image": "/static/images/meat.png",
         "children": []
       },
       {
+        "id": "2.3",
         "name": "Carbs",
         "image": "/static/images/carbs.png",
         "children": []

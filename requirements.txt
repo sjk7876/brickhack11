@@ -3,3 +3,4 @@ django-tailwind[reload]
 Pillow
 cookiecutter
 python-dotenv
+authlib
