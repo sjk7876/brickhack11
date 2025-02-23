@@ -1,24 +1,28 @@
 {% extends 'base.html' %} {% block content %}
-<section class="flex items-center justify-center h-screen">
-  <divclass class = "items-center">
+<section class="self-center flex justify-center h-screen">
+  <div class = "items-center">
     <h1>Type out a list of words seperated by comma</h1>
     <div class = "justify-center">
         <input>
     </div>
     <div>
         <input type="button" name="button">
-    </div>
+  </div>
   </div>
   <div class="input-file">
     <hi>Upload a photo for a Object</hi>
+    <form action="{% url 'core:caretaker-upload' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" id="myFile" name="myFile" accept="image/*">
+      <input type="submit">
+    </form>
   </div>
-  <div class="input-dropdown">
-    <label>Choose your Object</label>
-    <select>
+  <div class="input-dropdown ">
+    <select class="border-[3px]">
       {% for x in objects %}
         <option value="{{x}}">{{x}}</option>
       {% endfor %}
-  </select>
+    </select>
   </div>
 </section>
 {% endblock %}
