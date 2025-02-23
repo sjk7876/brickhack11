@@ -7,6 +7,22 @@ from GenerateImage import generateImage
 
 load_dotenv()
 
+'''
+to use, import expandWord and expandWordList from ExpandWords.py
+
+expandWord(word, category):
+    word - a string of a word
+    category - a string of a category
+    returns - a string of the expanded word in the format Word: {'word'} Category: {'category'}
+
+OR to do multiple words at once
+
+expandWordList(words, categories):
+    words - a string of words seperated by commas eg - chicken, water, beer, bread
+    categories - a string of categories seperated by commas
+    returns - a string of expanded words in the format Word: {'word'} Category: {'category'}, Word: {'word'} Category: {'category'}
+'''
+
 def getClient():
     return OpenAI(
         api_key=os.getenv("OPENAI_API_KEY")

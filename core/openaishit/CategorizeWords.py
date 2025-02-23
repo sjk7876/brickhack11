@@ -3,9 +3,18 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from GenerateImage import generateImage
-
 load_dotenv()
+
+'''
+to use, import catoregizeWordList from CategorizeWords.py
+
+catoregizeWordList(words):
+    words - a string of words seperated by commas
+    returns - a string of words and their categories in the format Word: {'word'} Category: {'category'}, Word: {'word'} Category: {'category'}
+    
+(i can change the format to something better if you want)
+
+'''
 
 def getClient():
     return OpenAI(

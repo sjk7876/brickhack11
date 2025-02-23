@@ -6,6 +6,14 @@ from openai import OpenAI
 
 load_dotenv()
 
+'''
+to use, import generateImage from GenerateImage.py
+
+generateImage(target):
+    target - a string of the target word/phrase
+    downloads images to the static/images folder with the name of the target word/phrase
+'''
+
 def getClient():
     return OpenAI(
         api_key=os.getenv("OPENAI_API_KEY")
