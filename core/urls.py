@@ -9,6 +9,7 @@ urlpatterns = [
     path("patient/", patient_view.render_nodes, name="patient-dashboard"),
     path("caretaker/", caregiver_view.home, name="caretaker-dashboard"),
     path("caretaker/upload/",caregiver_view.upload, name="caretaker-upload"),
+    path('caretaker/newCat/', caregiver_view.newCat, name='caretaker-newCat')
 ]
 
 if settings.DEBUG:
