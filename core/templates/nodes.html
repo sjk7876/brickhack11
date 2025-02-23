@@ -2,17 +2,16 @@
 <section class="flex items-center justify-center h-screen">
   {% for node in nodes %}
   <div class="card bg-base-100 w-96 shadow-xl mx-6">
-    <div class="stack">
+    <div class="stack hover:scale-105 transition-transform duration-300">
       <a
         href="{% url 'core:patient-node' node.id %}"
-        class="hover:scale-105 transition-transform duration-300"
       >
-        <figure class="rounded">
+        <figure class="rounded shadow-xl">
           <img src="{{ node.image.url }}" alt="{{ node.name }}" />
         </figure>
       </a>
-      {% if node.children %} {% for child in node.children.all %}
-      <figure>
+      {% if node.children %} {% for child in node.children.all|slice:":3" %}
+      <figure class="rounded shadow-xl">
         <img src="{{ child.image.url }}" />
       </figure>
       {% endfor %} {% endif %}
