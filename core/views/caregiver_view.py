@@ -4,7 +4,8 @@ from ..models import Node
 catagories = ["Choose your Catagories"]
 
 def home(request):
-    return render(request, "caretaker/caretakerHome.html",{"objects":catagories})
+    # return render(request, "caretaker/caretakerHome.html",{"objects":catagories})
+    return render(request, "caretaker/caretakerWordListUpload.html", {"objects":catagories})
 
 def upload(request):
     if request.method == "POST":
