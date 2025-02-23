@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseRedirect
 
 from core.openaishit.CategorizeWords import catoregizeWordList
+from core.openaishit.ExpandWords import expandWord
+from core.openaishit.GenerateImage import generateImage
 from ..models import Node
 catagories = ["Choose your Catagories"]
 
@@ -31,6 +33,22 @@ def generate_objects_from_word_list(request):
         word_list = request.POST.get('wordList')
         words_in_json = catoregizeWordList(word_list)
     return HttpResponse(words_in_json)
+
+def generate_single_image(request):
+    if request.method == "POST":
+        print(request.POST)
+        word = request.POST.get('name')
+        category_id = request.POST.get('category_id')
+        
+        parent = Node.objects.get(id=category_id)
+        category = parent.name if parent else None
+        
+        longer_word = expandWord(word, category)
+        generateImage(longer_word, category, word)
+        filepath = f"core/static/images/{word}.png"
+        
+        Node.objects.create(name=word, parent=category, image=filepath)
+    return HttpResponse("good")
 
 def newCat(request):
     if request.method == "POST":
