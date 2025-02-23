@@ -18,17 +18,17 @@
     <!-- Name Input -->
     <label class="input input-bordered flex items-center gap-2">
       Name
-      <input type="text" class="grow outline-transparent border-transparent" placeholder="Item name" />
+      <input type="text" name="name" class="grow outline-transparent border-transparent" placeholder="Item name" />
     </label>
 
     <!-- Category Dropdown -->
     <div class="dropdown flex grow w-full">
       <label
         tabindex="0"
-        class="btn font-normal text-base w-full bg-white border-gray-300 ps-1"
+        class="btn font-normal text-base w-full bg-white border-gray-300 ps-4 flex text-left justify-start"
         id="category-label"
       >
-        Category
+        Category <span class="text-gray-500">Select a category</span>
       </label>
       <ul
         tabindex="0"
@@ -36,7 +36,7 @@
       >
         {% for node in nodes %} {% if node.children.all|length < 1 %}
         <li>
-          <a onclick="selectCategory('{{ node.name }}')">
+          <a onclick="selectCategory('{{ node.id }}', '{{ node.name }}')">
             {{ node.name }}
           </a>
         </li>
@@ -44,13 +44,13 @@
         <!-- Parent Category (Selectable + Expandable) -->
         <li>
           <details>
-            <summary onclick="selectCategory('{{ node.name }}', event)">
+            <summary onclick="selectCategory('{{ node.id }}', '{{ node.name }}')">
               {{ node.name }}
             </summary>
             <ul>
               {% for child in node.children.all %}
               <li>
-                <a onclick="selectCategory('{{ child.name }}')">
+                <a onclick="selectCategory('{{ child.id }}', '{{ child.name }}')">
                   {{ child.name }}
                 </a>
               </li>
@@ -63,7 +63,7 @@
     </div>
 
     <!-- Hidden Input for Form Submission -->
-    <input type="hidden" name="category" id="selected-category" />
+    <input type="hidden" name="category_id" id="selected-category"Z />
 
     <!-- Image Upload -->
     <label class="input input-bordered flex items-center gap-2">
@@ -87,9 +87,9 @@
 
 <!-- JavaScript for Handling Category Selection -->
 <script>
-  function selectCategory(value) {
-    document.getElementById("category-label").innerText = value;
-    document.getElementById("selected-category").value = value;
+  function selectCategory(id, name) {
+    document.getElementById("category-label").innerText = "Category " + name;
+    document.getElementById("selected-category").value = id;
   }
 </script>
 {% endblock submenu %}

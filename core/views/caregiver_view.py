@@ -11,10 +11,11 @@ def home(request):
 def upload(request):
     if request.method == "POST":
         print(request.POST)
-        uploaded_file = request.FILES['myFile']
-        uploaded_name = request.POST.get('myName')
-        catagories.append(request.POST.get('newObject'))
-        Node.objects.create(name= uploaded_name,image = uploaded_file)
+        name = request.POST.get('name')
+        category_id = request.POST.get('category_id')
+        image = request.FILES.get("image")
+        
+        Node.objects.create(name=name, parent=category_id, image=image)
     return HttpResponse("good")
 
 def render_word_list_input_box(request):
