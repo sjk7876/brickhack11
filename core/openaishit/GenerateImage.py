@@ -100,8 +100,9 @@ def downloadImage(originalword, url):
     #     fn = fn[1:]
     # fn = "_".join(fn)
     
+    fp = f"core/static/images/{originalword.replace(" ", "_")}.png"
     try:
-        with open(f"core/static/images/{originalword}.png", "wb") as file:
+        with open(fp) as file:
             file.write(response.content)
     except Exception as e:
         print(e)
@@ -120,7 +121,8 @@ def generateImage(target, originalcontext, originalword):
 
 def generateImages(targetlist, originalcontexts, originalwords):
     for i in range(len(targetlist)):
-        if os.path.exists(f"core/static/images/{originalwords[i]}.png"):
+        fp = f"core/static/images/{originalwords[i].replace(" ", "_")}.png"
+        if os.path.exists(fp):
             continue
         
         url = generateImage(targetlist[i], originalcontexts[i], originalwords[i])

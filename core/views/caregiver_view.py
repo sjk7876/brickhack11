@@ -50,9 +50,9 @@ def generate_single_image(request):
         
         longer_word = expandWord(word, category)
         generateImage(longer_word, category, word)
-        filepath = f"core/static/images/{word}.png"
+        fp = f"core/static/images/{word.replace(" ", "_")}.png"
         
-        Node.objects.create(name=word, parent=parent, image=filepath)
+        Node.objects.create(name=word, parent=parent, image=fp)
     return HttpResponse("good")
 
 def newCat(request):

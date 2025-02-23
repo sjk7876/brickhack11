@@ -64,10 +64,11 @@ def callOpenAI(context, prompt, client):
 def strToNode(s):
     def get_or_create_category(category):
         if category not in category_map:
+            fp = f"core/static/images/{category.replace(" ", "_")}.png"
             category_map[category] = {
                 "id": str(len(category_map) + 1),
                 "name": category.capitalize(),
-                "image": f"core/static/images/{category}.png",
+                "image": fp,
                 "children": []
             }
         return category_map[category]
