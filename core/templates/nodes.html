@@ -1,20 +1,27 @@
-{% extends 'base.html' %} {% load static%} {% block content %}
-<section class="flex items-center justify-center h-screen">
+{% extends 'base.html' %} {% load static%}
+
+{% block scripts %}
+<script src="{% static 'core/js/nodes.js' %}" defer></script>
+{% endblock scripts%}
+
+{% block content %}
+<section class="flex flex-wrap items-center justify-center gap-6 w-full h-full">
   {% for node in nodes %}
-  <div class="card bg-base-100 w-96 shadow-xl mx-6">
-    <div class="stack hover:scale-105 transition-transform duration-300">
-      <a
-        href="{% url 'core:patient-node' node.id %}"
-      >
-        <figure class="rounded shadow-xl">
+  <div class="card bg-base-100 w-96 shadow-xl mx-6 my-6" id="card-{{ forloop.counter }}">
+    <div class="stack hover:scale-110 transition-transform duration-300">
+      {% if node.children.all|length > 0 %}
+      <a class="w-full h-full" href="{% url 'core:patient-node' node.id %}">
+        <figure class="rounded-3xl shadow-xl border-8 border-gray-50">
           <img src="{{ node.image.url }}" alt="{{ node.name }}" />
         </figure>
       </a>
-      {% if node.children %} {% for child in node.children.all|slice:":3" %}
-      <figure class="rounded shadow-xl">
-        <img src="{{ child.image.url }}" />
+      {% else %}
+
+      <figure class="rounded-3xl shadow-xl">
+        <img src="{{ node.image.url }}" alt="{{ node.name }}" />
       </figure>
-      {% endfor %} {% endif %}
+
+      {% endif %} 
     </div>
   </div>
   {%endfor%}
