@@ -21,7 +21,8 @@ def upload(request):
         category_id = request.POST.get('category_id')
         image = request.FILES.get("image")
         
-        Node.objects.create(name=name, parent=category_id, image=image)
+        parent = Node.objects.get(id=category_id) if category_id else None
+        Node.objects.create(name=name, parent=parent, image=image)
     return HttpResponse("good")
 
 def render_word_list_input_box(request):
@@ -36,7 +37,7 @@ def generate_objects_from_word_list(request):
         print(request.POST)
         word_list = request.POST.get('wordList')
         words_in_json = catoregizeWordList(word_list)
-    return HttpResponse(words_in_json)
+    return HttpResponse("good")
 
 def generate_single_image(request):
     if request.method == "POST":
@@ -51,7 +52,7 @@ def generate_single_image(request):
         generateImage(longer_word, category, word)
         filepath = f"core/static/images/{word}.png"
         
-        Node.objects.create(name=word, parent=category, image=filepath)
+        Node.objects.create(name=word, parent=parent, image=filepath)
     return HttpResponse("good")
 
 def newCat(request):

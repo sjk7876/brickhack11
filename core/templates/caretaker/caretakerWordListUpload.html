@@ -4,14 +4,37 @@
     <h1 class="text-2xl font-bold">Upload Objects by Word List</h1>
     <p class="text-sm text-gray-500">Upload a list of words separated by commas and we'll sort them into categories for you.</p>
 
-    <form action="{% url 'caretaker-upload-word-list' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'caretaker-upload-word-list' %}" method="post" enctype="multipart/form-data" id="uploadForm">
         {% csrf_token %}
         <div class="flex flex-col gap-2">
             <label for="wordList" class="text-sm font-medium">Word List:</label>
             <textarea type="text" class="textarea textarea-bordered w-full h-1/2" id="wordList" name="wordList" placeholder="Example: apple, banana, pear"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary mt-4">Upload</button>
+        <button type="submit" class="btn btn-primary mt-4" id="submitButton">Upload</button>
+        <span class="loading loading-bars loading-lg hidden" id="loadingSpinner"></span>
+    </form>
+</div>
+<script>
+    // Get references to the button and loading spinner
+    const submitButton = document.getElementById("submitButton");
+    const loadingSpinner = document.getElementById("loadingSpinner");
 
-</div>
+    const form = document.getElementById("uploadForm");
+
+// Add a submit event listener to the form
+    form.addEventListener("submit", function(event) {
+        // Prevent the form from submitting immediately
+        event.preventDefault();
+
+        // Hide the submit button and show the loading spinner
+        submitButton.classList.add("hidden");
+        loadingSpinner.classList.remove("hidden");
+
+        // Optionally, you can also submit the form after a short delay (for demo purposes)
+        setTimeout(function() {
+            form.submit(); // Submit the form after showing the spinner
+    },  500);
+
+    });
+</script>
 {% endblock submenu %}
-</div>

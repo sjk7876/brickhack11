@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Run animations on initial page load
     runAnimations();
 
     categoryCards.forEach(categoryCard => {
@@ -62,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ✅ Detect when user presses Back and Re-run Animations
     window.addEventListener("pageshow", function (event) {
         if (event.persisted) {
             console.log("Back button detected, re-running animations...");
