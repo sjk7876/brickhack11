@@ -121,10 +121,7 @@ def generateImage(target, originalcontext, originalword):
 def generateImages(targetlist, originalcontexts, originalwords):
     for i in range(len(targetlist)):
         if os.path.exists(f"core/static/images/{originalwords[i]}.png"):
-            print(f"already found - {originalwords[i]}!")
             continue
-        
-        print(targetlist[i], originalwords[i], originalcontexts[i])
         
         url = generateImage(targetlist[i], originalcontexts[i], originalwords[i])
         

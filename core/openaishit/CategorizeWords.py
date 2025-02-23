@@ -71,8 +71,6 @@ def strToNode(s):
                 "children": []
             }
         return category_map[category]
-
-    
     
     data = json.loads(s)
     
@@ -88,17 +86,16 @@ def strToNode(s):
         if word_node not in category_node["children"]:
             category_node["children"].append(word_node)
     
-    top_level_categories = [cat for cat in category_map.values() if all(cat not in v["children"] for v in category_map.values())]
+    # top_level_categories = [cat for cat in category_map.values() if all(cat not in v["children"] for v in category_map.values())]
 
-    return top_level_categories
+    # return top_level_categories
+    return category_map
+
 
 def downloadImageFromCatAndWord(categories):
     categories = json.loads(categories)
-    print(type(categories))
-    print(f"categories:\n{categories}")
     words = []
     cats = []
-    print("")
     
     for word in categories['categories']:
         words.append(word["word"])
@@ -108,13 +105,8 @@ def downloadImageFromCatAndWord(categories):
         if word + "s" in cats:
             words[i] += "s"
     
-    print()
-        
-    print(f"words: {words}\ncategories: {cats}\n")
-    
     phrases = expandWordList(", ".join(words), ", ".join(cats))
     phrases = phrases.split(", ")
-    print(f"phrases: {phrases}")
     
     # for phrase in phrases:
     generateImages(phrases, cats, words)
