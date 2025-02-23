@@ -16,8 +16,9 @@ urlpatterns = [
     path("caretaker/uploaditem/upload/",caregiver_view.upload, name="caretaker-upload"),
     path('caretaker/newCat/', caregiver_view.newCat, name='caretaker-newCat'),
     path('caretaker/uploaditem/', caregiver_view.render_individual_item_input_box, name='caretaker-upload-item'),
-    path("caretaker/uploadwordlist/",caregiver_view.render_word_list_input_box, name="caretaker-word-list"),
-    path("caretaker/uploadwordlist/upload/",caregiver_view.generate_objects_from_word_list, name="caretaker-upload-word-list"),
+    path("caretaker/uploadwordlist/", caregiver_view.render_word_list_input_box, name="caretaker-word-list"),
+    path("caretaker/uploadwordlist/upload/", caregiver_view.generate_objects_from_word_list, name="caretaker-upload-word-list"),
+    path("caretaker/uploaditem/generateimage", caregiver_view.generate_single_image, name="caretaker-generate-single-image"),
 ]
 
 if settings.DEBUG:
