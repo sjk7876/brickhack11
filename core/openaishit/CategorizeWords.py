@@ -4,6 +4,9 @@ import json
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from GenerateImage import generateImages
+from ExpandWords import expandWordList
+
 load_dotenv()
 
 '''
@@ -58,15 +61,13 @@ def callOpenAI(context, prompt, client):
     
     return response.choices[0].message.content
 
-
-
 def strToNode(s):
     def get_or_create_category(category):
         if category not in category_map:
             category_map[category] = {
                 "id": str(len(category_map) + 1),
                 "name": category.capitalize(),
-                "image": f"/static/images/{category}.png",
+                "image": f"core/static/images/{category}.png",
                 "children": []
             }
         return category_map[category]
@@ -89,11 +90,35 @@ def strToNode(s):
     
     top_level_categories = [cat for cat in category_map.values() if all(cat not in v["children"] for v in category_map.values())]
 
-    print(json.dumps(top_level_categories, indent=2))
-
-    
     return top_level_categories
 
+def downloadImageFromCatAndWord(categories):
+    categories = json.loads(categories)
+    print(type(categories))
+    print(f"categories:\n{categories}")
+    words = []
+    cats = []
+    print("")
+    
+    for word in categories['categories']:
+        words.append(word["word"])
+        cats.append(word["category"] + "s")
+    
+    for i, word in enumerate(words):
+        if word + "s" in cats:
+            words[i] += "s"
+    
+    print()
+        
+    print(f"words: {words}\ncategories: {cats}\n")
+    
+    phrases = expandWordList(", ".join(words), ", ".join(cats))
+    phrases = phrases.split(", ")
+    print(f"phrases: {phrases}")
+    
+    # for phrase in phrases:
+    generateImages(phrases, cats, words)
+    
 def catoregizeWordList(words):
     client = getClient()
     
@@ -102,8 +127,11 @@ def catoregizeWordList(words):
     
     categories = callOpenAI(context, prompt, client)
     
-    print(categories)
-    print("\n")
+    downloadImageFromCatAndWord(categories)
+    
+    # for phrase in phrases:
+    #     print(phrase)
+        
     
     node = strToNode(categories)
     
@@ -115,9 +143,5 @@ def main():
     
     node = catoregizeWordList(wordlist)
     
-    print("==========================================")
-    print(type(node))
-    print(node)
-
 if __name__ == "__main__":
     main()

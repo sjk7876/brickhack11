@@ -37,7 +37,8 @@ def getImagePrompt(target, context):
     instructions += "The subject should be 3d and plain with not too many details, with a focus on the subject. "
     instructions += "The subject should be in color. "
     instructions += "There should be NO other objects. "
-    instructions += "Do NOT make the subject solid white or marble-like. MAKE SURE to use color in the subject. "
+    instructions += "MAKE SURE to use color in the subject. "
+    # instructions += "Do NOT make the subject solid white or marble-like. MAKE SURE to use color in the subject. "
     # instructions += "The subject should be simple and easily recognizable, with not too many details and few defining features. "
     instructions += "The image should not have a border or pattern in the background. "
     # instructions += f"The background should be a simple with no additional objects or text. "
@@ -100,7 +101,7 @@ def downloadImage(originalword, url):
     # fn = "_".join(fn)
     
     try:
-        with open(f"../static/images/{originalword}.png", "wb") as file:
+        with open(f"core/static/images/{originalword}.png", "wb") as file:
             file.write(response.content)
     except Exception as e:
         print(e)
@@ -111,17 +112,23 @@ def generateImage(target, originalcontext, originalword):
     prompt = getImagePrompt(target, originalcontext)
     response = callDALLE(client, prompt)
     
-    print(response.data[0].revised_prompt)
+    # print(response.data[0].revised_prompt)
     
     downloadImage(originalword, response.data[0].url)
     
     # return response.data[0].url
 
-def generageImages(targetlist, originalcontexts, originalwords):
+def generateImages(targetlist, originalcontexts, originalwords):
     for i in range(len(targetlist)):
+        if os.path.exists(f"core/static/images/{originalwords[i]}.png"):
+            print(f"already found - {originalwords[i]}!")
+            continue
+        
+        print(targetlist[i], originalwords[i], originalcontexts[i])
+        
         url = generateImage(targetlist[i], originalcontexts[i], originalwords[i])
         
-        downloadImage(originalwords[i], originalcontexts[i], url)
+        downloadImage(originalwords[i], url)
 
 def main():
     client = getClient()
