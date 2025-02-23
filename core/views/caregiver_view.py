@@ -32,7 +32,7 @@ def generate_objects_from_word_list(request):
         print(request.POST)
         word_list = request.POST.get('wordList')
         words_in_json = catoregizeWordList(word_list)
-    return HttpResponse(words_in_json)
+    return HttpResponse("good")
 
 def generate_single_image(request):
     if request.method == "POST":

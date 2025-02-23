@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import test_view, caregiver_view, patient_view, auth_view
+from .views import caregiver_view, patient_view, auth_view
 from django.conf import settings
 from django.conf.urls.static import static
 
