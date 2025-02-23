@@ -1,13 +1,23 @@
 {% extends 'base.html' %} {% load static%} {% block content %}
 <section class="flex items-center justify-center h-screen">
   {% for node in nodes %}
-  <a href="{% url 'core:patient-node' node.id %}" class="hover:scale-105 transition-transform duration-300">
-    <div class="card bg-base-100 w-96 shadow-xl mx-6">
+  <div class="card bg-base-100 w-96 shadow-xl mx-6">
+    <div class="stack">
+      <a
+        href="{% url 'core:patient-node' node.id %}"
+        class="hover:scale-105 transition-transform duration-300"
+      >
+        <figure class="rounded">
+          <img src="{{ node.image.url }}" alt="{{ node.name }}" />
+        </figure>
+      </a>
+      {% if node.children %} {% for child in node.children.all %}
       <figure>
-        <img src="{{ node.image.url }}" alt="{{ node.name }}" />
+        <img src="{{ child.image.url }}" />
       </figure>
+      {% endfor %} {% endif %}
     </div>
-  </a>
+  </div>
   {%endfor%}
 </section>
 {% endblock %}

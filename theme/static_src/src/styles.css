@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.stack > * {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    transform: translateY(20%) scale(0.84) !important;
+    filter: brightness(0.2) !important;
+    z-index: 1;
+    width: 100%;
+    opacity: 1;
+  }
+  
+  .stack > *:nth-child(2) {
+    transform: translateY(10%) scale(0.92) !important;
+    filter: brightness(0.6) !important;
+    z-index: 2;
+    opacity: 1;
+  }
+  
+  .stack > *:nth-child(1) {
+    transform: translateY(0) scale(1) !important;
+    filter: brightness(1) !important;
+    z-index: 3;
+    opacity: 1;
+  }
