@@ -58,8 +58,10 @@ def getContextMany():
     
     return context
 
+# def getPromptOne(word, category):
+#     return "Word: {'" + word + "'} Category: {'" + category + "'} "
 def getPromptOne(word, category):
-    return "Word: {'" + word + "'} Category: {'" + category + "'} "
+    return f"Word: {{{word or ''}}} Category: {{{category or ''}}}"
 
 def getPromptMany(wordList, categories):
     wordList = wordList.split(",")

@@ -1,0 +1,18 @@
+{% extends "caretaker/caretakerPageLayout.html" %}
+{% block submenu %}
+<div class="flex flex-col justify-center gap-4">
+    <h1 class="text-2xl font-bold">Generated Images</h1>
+    <p class="text-sm text-gray-500">Here are the images created from the word list:</p>
+
+    <!-- Grid container for images -->
+    <div class="grid grid-cols-3 gap-4 mt-4">
+        {% for image_path in image_paths %}
+        <div class="relative">
+            <img src="{{ image_path }}" alt="Generated Image" class="w-full h-auto border rounded-lg">
+        </div>
+        {% empty %}
+        <p>No images generated yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock submenu %}

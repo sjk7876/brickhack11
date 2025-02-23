@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseRedirect
-
+from django.conf import settings
 from core.openaishit.CategorizeWords import catoregizeWordList
 from core.openaishit.ExpandWords import expandWord
 from core.openaishit.GenerateImage import generateImage
@@ -27,12 +27,33 @@ def render_individual_item_input_box(request):
     nodes = Node.objects.filter(parent=None)
     return render(request, "caretaker/caretakerUploadIndividualItems.html", {"nodes":nodes})
 
+# def generate_objects_from_word_list(request):
+#     if request.method == "POST":
+#         print(request.POST)
+#         word_list = request.POST.get('wordList')
+#         words_in_json = catoregizeWordList(word_list)
+#     return HttpResponse("good")
 def generate_objects_from_word_list(request):
     if request.method == "POST":
-        print(request.POST)
         word_list = request.POST.get('wordList')
         words_in_json = catoregizeWordList(word_list)
-    return HttpResponse("good")
+
+        # Store generated image paths
+        image_paths = []
+        for word in words_in_json:
+            category = None  # You might want to customize this based on your logic
+            longer_word = expandWord(word, category)
+            generateImage(longer_word, category, word)
+            filepath = f"{settings.STATIC_URL}images/{word}.png"
+            
+            # Save the image path to be passed to the template
+            image_paths.append(filepath)
+
+        # Render the template with the image paths
+        return render(request, "caretaker/caretakerDisplayImages.html", {"image_paths": image_paths})
+
+    return HttpResponse("Invalid method", status=405)
+
 
 def generate_single_image(request):
     if request.method == "POST":
