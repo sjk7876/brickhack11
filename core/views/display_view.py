@@ -15,3 +15,12 @@ def display_demo_phone(request, node_id=None):
         nodes = parent.children.all()
         
     return render(request, "displays/displayPhone.html", {"nodes": nodes})
+
+def display_demo_tablet(request, node_id=None):
+    if node_id is None:
+        nodes = Node.objects.filter(parent=None)
+    else:
+        parent = Node.objects.get(id=node_id)
+        nodes = parent.children.all()
+        
+    return render(request, "displays/displayTablet.html", {"nodes": nodes})

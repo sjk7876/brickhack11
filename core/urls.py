@@ -23,6 +23,8 @@ urlpatterns = [
     path("display-demo/", display_view.display_demo, name="display-demo"),
     path("display-demo/phone/", display_view.display_demo_phone, name="display-demo-phone"),
     path("display-demo/phone/<int:node_id>", display_view.display_demo_phone, name="display-demo-phone-node"),
+    path("display-demo/tablet/", display_view.display_demo_tablet, name="display-demo-tablet"),
+    path("display-demo/tablet/<int:node_id>", display_view.display_demo_tablet, name="display-demo-tablet-node"),
 ]
 
 if settings.DEBUG:

@@ -6,16 +6,11 @@
 {% endblock scripts %} 
 
 {% block submenu %}
-<div class="flex flex-col justify-center gap-4">
-  {% comment %} <h1 class="text-2xl font-bold">Phone</h1>
-  <p class="text-sm text-gray-500">
-    This is a phone display. It is designed to be used on a phone.
-  </p> {% endcomment %}
-
-  <div class="mockup-phone">
+<div class="flex flex-col justify-center gap-4 mx-auto">
+  <div class="mockup-phone !w-[825px] !h-[555]">
     <div class="camera"></div>
     <div class="display">
-      <div class="artboard artboard-demo phone-1">
+      <div class="artboard artboard-demo artboard-horizontal phone-3 !w-[800px] !h-[520px]">
 <section class="flex flex-wrap items-center justify-center gap-4 w-full h-full overflow-y-auto scroll-container">
   <button
     onclick="window.history.back()"
@@ -25,15 +20,15 @@
   </button>
   {% for node in nodes %} {% if node.children.all|length > 0 %}
   <div
-    class="card bg-base-100 shadow-xl mx-4 my-4 w-48 h-48"
+    class="card bg-base-100 shadow-xl mx-4 my-4 w-72 h-72"
     id="category-card-{{ forloop.counter }}"
   >
     <div
       class="tooltip tooltip-primary hover:scale-110 transition-transform duration-300"
       data-tip="{{ node.name }}"
     >
-      <a class="w-full h-full" href="{% url 'display-demo-phone-node' node.id %}">
-        <figure class="rounded-lg shadow-xl overflow-hidden w-48 h-48">
+      <a class="w-full h-full" href="{% url 'display-demo-tablet-node' node.id %}">
+        <figure class="rounded-lg shadow-xl overflow-hidden w-72 h-72">
           <img src="{{ node.image.url }}" alt="{{ node.name }}" class="w-full h-full object-cover" />
         </figure>
       </a>
@@ -41,7 +36,7 @@
   </div>
   {% else %}
   <div
-    class="card bg-base-100 shadow-xl mx-4 my-4 w-48 h-48"
+    class="card bg-base-100 shadow-xl mx-4 my-4 w-72 h-72"
     id="single-card-{{ forloop.counter }}"
   >
     <div
