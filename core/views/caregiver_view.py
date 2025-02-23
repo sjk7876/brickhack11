@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseRedirect
+
+from core.openaishit.CategorizeWords import catoregizeWordList
 from ..models import Node
 catagories = ["Choose your Catagories"]
 
 def home(request):
-    # return render(request, "caretaker/caretakerHome.html",{"objects":catagories})
-    return render(request, "caretaker/caretakerWordListUpload.html", {"objects":catagories})
+    return render(request, "caretaker/caretakerHome.html",{"objects":catagories})
 
 def upload(request):
     if request.method == "POST":
@@ -15,6 +16,19 @@ def upload(request):
         catagories.append(request.POST.get('newObject'))
         Node.objects.create(name= uploaded_name,image = uploaded_file)
     return HttpResponse("good")
+
+def render_word_list_input_box(request):
+    return render(request, "caretaker/caretakerWordListUpload.html", {"objects":catagories})
+
+def render_individual_item_input_box(request):
+    return render(request, "caretaker/caretakerUploadIndividualItems.html", {"objects":catagories})
+
+def generate_objects_from_word_list(request):
+    if request.method == "POST":
+        print(request.POST)
+        word_list = request.POST.get('wordList')
+        words_in_json = catoregizeWordList(word_list)
+    return HttpResponse(words_in_json)
 
 def newCat(request):
     if request.method == "POST":

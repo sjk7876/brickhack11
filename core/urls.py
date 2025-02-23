@@ -13,9 +13,11 @@ urlpatterns = [
     path("caretaker/", caregiver_view.home, name="caretaker-dashboard"),
     path("choose-user-type/", auth_view.choose_user_type, name="choose_user_type"),
     path("patient/<int:node_id>/", patient_view.render_nodes, name="patient-node"),
-    path("caretaker/upload/",caregiver_view.upload, name="caretaker-upload"),
+    path("caretaker/uploaditem/upload/",caregiver_view.upload, name="caretaker-upload"),
     path('caretaker/newCat/', caregiver_view.newCat, name='caretaker-newCat'),
-    # path("about/", about_view.home, name="about-page"),
+    path('caretaker/uploaditem/', caregiver_view.render_individual_item_input_box, name='caretaker-upload-item'),
+    path("caretaker/uploadwordlist/",caregiver_view.render_word_list_input_box, name="caretaker-word-list"),
+    path("caretaker/uploadwordlist/upload/",caregiver_view.generate_objects_from_word_list, name="caretaker-upload-word-list"),
 ]
 
 if settings.DEBUG:

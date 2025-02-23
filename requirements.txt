@@ -4,3 +4,4 @@ Pillow
 cookiecutter
 python-dotenv
 authlib
+openai

@@ -3,7 +3,15 @@
 <div class="flex flex-col justify-center gap-4">
     <h1 class="text-2xl font-bold">Upload Objects by Word List</h1>
     <p class="text-sm text-gray-500">Upload a list of words separated by commas and we'll sort them into categories for you.</p>
-<textarea class="textarea textarea-bordered w-full h-1/2" placeholder="Example: apple, banana, pear"></textarea>
+
+    <form action="{% url 'caretaker-upload-word-list' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex flex-col gap-2">
+            <label for="wordList" class="text-sm font-medium">Word List:</label>
+            <textarea type="text" class="textarea textarea-bordered w-full h-1/2" id="wordList" name="wordList" placeholder="Example: apple, banana, pear"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Upload</button>
+
 </div>
 {% endblock submenu %}
 </div>
