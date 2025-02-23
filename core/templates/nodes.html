@@ -1,29 +1,37 @@
-{% extends 'base.html' %} {% load static%}
-
-{% block scripts %}
+{% extends 'base.html' %} {% load static%} {% block scripts %}
 <script src="{% static 'core/js/nodes.js' %}" defer></script>
-{% endblock scripts%}
-
-{% block content %}
-<section class="flex flex-wrap items-center justify-center gap-6 w-full h-full">
-  {% for node in nodes %}
-  <div class="card bg-base-100 w-96 shadow-xl mx-6 my-6" id="card-{{ forloop.counter }}">
-    <div class="tooltip tooltip-primary hover:scale-110 transition-transform duration-300" data-tip="{{ node.name }}">
-      {% if node.children.all|length > 0 %}
+{% endblock scripts%} {% block content %}
+<section class="flex flex-wrap items-center justify-center gap-4 w-full h-full">
+  {% for node in nodes %} {% if node.children.all|length > 0 %}
+  <div
+    class="card bg-base-100 w-96 shadow-xl mx-4 my-4"
+    id="category-card-{{ forloop.counter }}"
+  >
+    <div
+      class="tooltip tooltip-primary hover:scale-110 transition-transform duration-300"
+      data-tip="{{ node.name }}"
+    >
       <a class="w-full h-full" href="{% url 'core:patient-node' node.id %}">
         <figure class="rounded-lg shadow-xl">
           <img src="{{ node.image.url }}" alt="{{ node.name }}" />
         </figure>
       </a>
-      {% else %}
-
+    </div>
+  </div>
+  {% else %}
+  <div
+    class="card bg-base-100 w-96 shadow-xl mx-4 my-4"
+    id="single-card-{{ forloop.counter }}"
+  >
+    <div
+      class="tooltip tooltip-primary hover:scale-110 transition-transform duration-300"
+      data-tip="{{ node.name }}"
+    >
       <figure class="rounded-lg shadow-xl">
         <img src="{{ node.image.url }}" alt="{{ node.name }}" />
       </figure>
-
-      {% endif %} 
     </div>
   </div>
-  {%endfor%}
+  {% endif %} {%endfor%}
 </section>
 {% endblock %}

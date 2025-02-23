@@ -16,7 +16,7 @@
     <div class="navbar bg-gray-100 shadow-md">
       <div class="navbar-start"></div>
       <div class="navbar-center">
-        <a class="btn btn-ghost text-xl">Petal</a>
+        <a class="btn btn-ghost text-xl" href="{% url 'core:patient-dashboard' %}">Petal</a>
       </div>
       <div class="navbar-end">
         <div class="dropdown dropdown-end">
@@ -29,6 +29,7 @@
           >
             <li><a href="{% url 'core:patient-dashboard' %}">Patient View</a></li>
             <li><a href="{% url 'core:caretaker-dashboard' %}">Caretaker View</a></li>
+            <li><a href="{% url 'core:about-page' %}">About Petal</a></li>
           </ul>
         </div>
       </div>

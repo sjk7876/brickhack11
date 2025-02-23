@@ -15,7 +15,8 @@ urlpatterns = [
     path("choose-user-type/", auth_view.choose_user_type, name="choose_user_type"),
     path("patient/<int:node_id>/", patient_view.render_nodes, name="patient-node"),
     path("caretaker/upload/",caregiver_view.upload, name="caretaker-upload"),
-    path('caretaker/newCat/', caregiver_view.newCat, name='caretaker-newCat')
+    path('caretaker/newCat/', caregiver_view.newCat, name='caretaker-newCat'),
+    # path("about/", about_view.home, name="about-page"),
 ]
 
 if settings.DEBUG:
