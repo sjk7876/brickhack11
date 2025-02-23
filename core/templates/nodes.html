@@ -1,13 +1,22 @@
 {% extends 'base.html' %} {% load static%} {% block content %}
 <section class="flex items-center justify-center h-screen">
   {% for node in nodes %}
-  <a href="https://www.google.com/" target="blank" class="hover:scale-105 transition-transform duration-300">
-    <div class="card bg-base-100 w-96 shadow-xl mx-6">
-      <figure>
-        <img src="{{ node.image }}" alt="{{ node.name }}" />
+  <div class="card bg-base-100 w-96 shadow-xl mx-6">
+    <div class="stack hover:scale-105 transition-transform duration-300">
+      <a
+        href="{% url 'core:patient-node' node.id %}"
+      >
+        <figure class="rounded shadow-xl">
+          <img src="{{ node.image.url }}" alt="{{ node.name }}" />
+        </figure>
+      </a>
+      {% if node.children %} {% for child in node.children.all|slice:":3" %}
+      <figure class="rounded shadow-xl">
+        <img src="{{ child.image.url }}" />
       </figure>
+      {% endfor %} {% endif %}
     </div>
-  </a>
+  </div>
   {%endfor%}
 </section>
 {% endblock %}
