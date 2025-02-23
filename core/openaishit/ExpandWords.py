@@ -33,7 +33,7 @@ def getContextOne():
     context += "For example - Word: {'chicken'} Category: {'animal'}. "
     context += "Expand the given word into a descriptive phrase, making sure to keep the category in context. "
     context += "For example, water -> a glass of water, beer -> a mug of beer, bread -> a loaf of bread. "
-    context += "If the category is not provided (NONE), assume the category is 'thing'. "
+    context += "If the category is not provided (NONE), assume the category is 'a collection'. "
     context += "Some words will not need to be changed, such as shirt or clown. "
     context += "Do not overcomplicate the phrase. "
     context += "Do not add unnecessary details. "
@@ -48,7 +48,7 @@ def getContextMany():
     context += "For example - Word: {'chicken'} Category: {'animal'}, Word: {'water'} Category: {'drink'}. "
     context += "Expand each given word into a descriptive phrase, making sure to keep the category in context. "
     context += "For example, water -> a glass of water, beer -> a mug of beer, bread -> a loaf of bread. "
-    context += "If the category is not provided (NONE), assume the category is 'thing'. "
+    context += "If the category is not provided (NONE), assume the category is 'a collection'. "
     context += "Some words will not need to be changed, such as shirt or clown. "
     context += "Do not overcomplicate each phrase. "
     context += "Do not add unnecessary details. "
@@ -125,8 +125,13 @@ def main():
     
     print(phrase)
     
-    for p in phrase.split(","):
-        generateImage(p.lstrip())
+    word = word.split(",")
+    phrase = phrase.split(",")
+    category = category.split(",")
+    
+    for i in range(len(word)):
+        # print(i, p)
+        generateImage(phrase[i].lstrip(), category[i], word[i].lstrip())
 
 if __name__ == "__main__":
     main()
