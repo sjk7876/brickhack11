@@ -99,6 +99,7 @@ def downloadImage(originalword, url):
     # if len(fn) > 0 and fn[0] == "a":
     #     fn = fn[1:]
     # fn = "_".join(fn)
+    # Random comment
     
     fp = f"uploads/{originalword.replace(' ', '_')}.png"
     try:
