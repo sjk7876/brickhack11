@@ -100,7 +100,7 @@ def downloadImage(originalword, url):
     #     fn = fn[1:]
     # fn = "_".join(fn)
     
-    fp = f"media/uploads/{originalword.replace(' ', '_')}.png"
+    fp = f"uploads/{originalword.replace(' ', '_')}.png"
     try:
         with open(fp,'wb') as file:
             file.write(response.content)
@@ -121,7 +121,7 @@ def generateImage(target, originalcontext, originalword):
 
 def generateImages(targetlist, originalcontexts, originalwords):
     for i in range(len(targetlist)):
-        fp = f"media/uploads/{originalwords[i].replace(' ', '_')}.png"
+        fp = f"uploads/{originalwords[i].replace(' ', '_')}.png"
         if os.path.exists(fp):
             continue
         
