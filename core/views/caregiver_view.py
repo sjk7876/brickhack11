@@ -27,12 +27,6 @@ def render_individual_item_input_box(request):
     nodes = Node.objects.filter(parent=None)
     return render(request, "caretaker/caretakerUploadIndividualItems.html", {"nodes":nodes})
 
-# def generate_objects_from_word_list(request):
-#     if request.method == "POST":
-#         print(request.POST)
-#         word_list = request.POST.get('wordList')
-#         words_in_json = catoregizeWordList(word_list)
-#     return HttpResponse("good")
 def generate_objects_from_word_list(request):
     if request.method == "POST":
         word_list = request.POST.get('wordList')
@@ -48,7 +42,7 @@ def generate_objects_from_word_list(request):
             
             # Save the image path to be passed to the template
             image_paths.append(filepath)
-
+            print("Generated new image", word)
         # Render the template with the image paths
         return render(request, "caretaker/caretakerDisplayImages.html", {"image_paths": image_paths})
 
